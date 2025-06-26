@@ -1,0 +1,96 @@
+module(name = "com_google_fhir")
+
+bazel_dep(name = "abseil-cpp", version = "20240722.0", repo_name = "com_google_absl")
+bazel_dep(name = "antlr4-cpp-runtime", version = "4.13.2", repo_name = "antlr_cc_runtime")
+bazel_dep(name = "bazel_features", version = "1.19.0")
+bazel_dep(name = "gazelle", version = "0.39.1")
+bazel_dep(name = "glog", version = "0.7.1", repo_name = "com_github_glog_glog")
+bazel_dep(name = "google_bazel_common")
+bazel_dep(name = "googletest", version = "1.15.2", repo_name = "com_google_googletest")
+bazel_dep(name = "icu", version = "76.1.bcr.3", repo_name = "icu")
+bazel_dep(name = "libarchive", version = "3.7.9")
+bazel_dep(name = "nlohmann_json", version = "3.12.0")
+bazel_dep(name = "protobuf", version = "29.0-rc2.bcr.1", repo_name = "com_google_protobuf")
+bazel_dep(name = "re2", version = "2024-07-02", repo_name = "com_googlesource_code_re2")
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "rules_java", version = "8.2.0")
+bazel_dep(name = "rules_jvm_external", version = "6.7")
+bazel_dep(name = "rules_go", version = "0.53.0", repo_name = "rules_go")
+bazel_dep(name = "rules_proto", version = "7.0.2")
+
+# Java toolchain configuration
+java_toolchains = use_extension("@rules_java//java:extensions.bzl", "toolchains")
+use_repo(java_toolchains, "remotejdk11_linux", "remotejdk11_macos", "remotejdk11_win")
+
+BAZEL_COMMON_COMMIT = "35d95678edfb9161c0e983cc7967ebbc11526c0f"
+
+archive_override(
+    module_name = "google_bazel_common",
+    integrity = "sha256-uzp6g3z2QpVwqGkJ2d58NnjtdEYT/DRGgu7TzH2InQM=",
+    strip_prefix = "bazel-common-%s" % BAZEL_COMMON_COMMIT,
+    urls = ["https://github.com/google/bazel-common/archive/%s.zip" % BAZEL_COMMON_COMMIT],
+)
+
+git_override(
+    module_name = "rules_jvm_external",
+    commit = "f50d46ff19172e2f1bd30ac38a1119e1fb23ac74",
+    remote = "https://github.com/bazel-contrib/rules_jvm_external.git",
+)
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven", dev_dependency = True)
+maven.install(
+    artifacts = [
+        "com.beust:jcommander:1.72",
+        "com.fasterxml.jackson.core:jackson-annotations:2.9.5",
+        "com.fasterxml.jackson.core:jackson-core:2.9.5",
+        "com.fasterxml.jackson.core:jackson-databind:2.9.5",
+        "com.google.cloud:google-cloud-bigquery:1.38.0",
+        "com.google.code.gson:gson:2.8.6",
+        "com.google.errorprone:error_prone_annotations:2.3.3",
+        "com.google.guava:guava-testlib:31.1-jre",
+        "com.google.guava:guava:31.1-jre",
+        "com.google.http-client:google-http-client-gson:1.43.0",
+        "com.google.testparameterinjector:test-parameter-injector:1.15",
+        "com.google.truth:truth:1.4.4",
+        "com.google.truth.extensions:truth-proto-extension:1.4.4",
+        "junit:junit:4.13-rc-1",
+        "org.antlr:antlr4:jar:4.13.2",
+        "org.apache.beam:beam-runners-direct-java:2.9.0",
+        "org.apache.beam:beam-runners-google-cloud-dataflow-java:2.9.0",
+        "org.apache.beam:beam-sdks-java-core:2.9.0",
+        "org.apache.commons:commons-compress:1.21",
+        "org.slf4j:slf4j-simple:1.7.25",
+    ],
+)
+use_repo(maven, "maven")
+
+go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+go_deps.from_file(go_mod = "//go:go.mod")
+use_repo(
+    go_deps,
+    "com_github_antlr4_go_antlr_v4",
+    "com_github_golang_protobuf",
+    "com_github_golang_glog",
+    "com_github_google_fhir_go_protopath",
+    "com_github_google_go_cmp",
+    "com_github_json_iterator_go",
+    "org_bitbucket_creachadair_stringset",
+    "org_golang_google_protobuf",
+    "org_golang_x_exp",
+)
+
+http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+
+http_file(
+    name = "hl7.fhir.r4.core_4.0.1",
+    downloaded_file_path = "hl7.fhir.r4.core@4.0.1.tgz",
+    sha256 = "b090bf929e1f665cf2c91583720849695bc38d2892a7c5037c56cb00817fb091",
+    url = "https://hl7.org/fhir/R4/hl7.fhir.r4.core.tgz",
+)
+
+http_file(
+    name = "hl7.fhir.r5.core_5.0.0",
+    downloaded_file_path = "hl7.fhir.r5.core@5.0.0.tgz",
+    sha256 = "74b27cd1bfce9e80eaceac431edf230b0945a443564fbf5512f82e5fa50a80d4",
+    url = "https://hl7.org/fhir/R5/hl7.fhir.r5.core.tgz",
+)

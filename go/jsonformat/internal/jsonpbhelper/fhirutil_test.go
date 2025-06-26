@@ -44,6 +44,7 @@ import (
 	r5tspb "github.com/google/fhir/go/proto/google/fhir/proto/r5/core/resources/test_script_go_proto"
 	r5transportpb "github.com/google/fhir/go/proto/google/fhir/proto/r5/core/resources/transport_go_proto"
 	c3pb "github.com/google/fhir/go/proto/google/fhir/proto/stu3/codes_go_proto"
+	c5pb "github.com/google/fhir/go/proto/google/fhir/proto/r5/core/codes_go_proto"
 	d3pb "github.com/google/fhir/go/proto/google/fhir/proto/stu3/datatypes_go_proto"
 	e3pb "github.com/google/fhir/go/proto/google/fhir/proto/stu3/fhirproto_extensions_go_proto"
 	r3pb "github.com/google/fhir/go/proto/google/fhir/proto/stu3/resources_go_proto"

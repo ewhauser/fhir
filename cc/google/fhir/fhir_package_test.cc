@@ -60,7 +60,7 @@ TEST(FhirPackageTest, LoadSucceeds) {
   FHIR_ASSERT_OK_AND_ASSIGN(
       std::unique_ptr<FhirPackage> fhir_package,
       FhirPackage::Load(
-          "external/hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz"));
+          "external/_main~_repo_rules~hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz"));
   EXPECT_EQ(fhir_package->value_sets.size(), kR4ValuesetsCount);
   EXPECT_EQ(fhir_package->code_systems.size(), kR4CodeSystemsCount);
   EXPECT_EQ(fhir_package->structure_definitions.size(), kR4DefinitionsCount);

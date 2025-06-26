@@ -43,7 +43,7 @@ public final class ValueSetGeneratorV2Test {
     if (r4Package == null) {
       r4Package =
           FhirPackage.load(
-              "external/hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz",
+              "external/_main~_repo_rules~hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz",
               /* no packageInfo proto */ null,
               /* ignoreUnrecognizedFieldsAndCodes= */ true);
     }
@@ -58,7 +58,7 @@ public final class ValueSetGeneratorV2Test {
     if (r5Package == null) {
       r5Package =
           FhirPackage.load(
-              "external/hl7.fhir.r5.core_5.0.0/file/hl7.fhir.r5.core@5.0.0.tgz",
+              "external/_main~_repo_rules~hl7.fhir.r5.core_5.0.0/file/hl7.fhir.r5.core@5.0.0.tgz",
               /* no packageInfo proto */ null,
               /* ignoreUnrecognizedFieldsAndCodes= */ true);
     }

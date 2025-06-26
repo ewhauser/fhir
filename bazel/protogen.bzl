@@ -15,9 +15,9 @@
 
 load("@rules_java//java:defs.bzl", "java_binary", "java_test")
 
-R4_PACKAGE_DEP = "@com_google_fhir//spec:fhir_r4"
-PROTO_GENERATOR = "@com_google_fhir//java/com/google/fhir/protogen:ProtoGenerator"
-PROFILE_GENERATOR = "@com_google_fhir//java/com/google/fhir/protogen:ProfileGenerator"
+R4_PACKAGE_DEP = "//spec:fhir_r4"
+PROTO_GENERATOR = "//java/com/google/fhir/protogen:ProtoGenerator"
+PROFILE_GENERATOR = "//java/com/google/fhir/protogen:ProfileGenerator"
 
 MANUAL_TAGS = ["manual"]
 
@@ -155,12 +155,12 @@ def gen_fhir_protos(
         java_test(
             name = "GeneratedProtoTest_" + name,
             size = "medium",
-            srcs = ["//external:GeneratedProtoTest.java"],
+            srcs = ["//javatests/com/google/fhir/protogen:GeneratedProtoTest.java"],
             jvm_flags = test_flags,
             data = src_pkgs + [":%s.zip" % name, "%s_proto_golden_files" % name],
             test_class = "com.google.fhir.protogen.GeneratedProtoTest",
             deps = [
-                "//external:protogen",
+                "//java/com/google/fhir/protogen:protogen",
                 "@maven//:com_google_guava_guava",
                 "@maven//:com_google_truth_truth",
                 "@maven//:junit_junit",

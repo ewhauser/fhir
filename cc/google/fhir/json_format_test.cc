@@ -164,7 +164,7 @@ std::string GetTestName(
 // R4 NPM, and not just trivially passing.
 TEST(R4JsonFormatTest, NpmSanityTest) {
   absl::StatusOr<std::vector<JsonFile>> files = GetResourceJsonFiles(
-      "external/hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz");
+      "external/_main~_repo_rules~hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz");
   FHIR_ASSERT_OK(files.status());
 
   EXPECT_EQ(files->size(), 4578);
@@ -201,7 +201,7 @@ INSTANTIATE_TEST_SUITE_P(
     R4Tests, R4JsonFormatTest,
     testing::ValuesIn(
         GetResourceJsonFiles(
-            "external/hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz")
+            "external/_main~_repo_rules~hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz")
             .value()),
     GetTestName<R4JsonFormatTest>);
 
@@ -209,7 +209,7 @@ INSTANTIATE_TEST_SUITE_P(
 // R5 NPM, and not just trivially passing.
 TEST(R5JsonFormatTest, NpmSanityTest) {
   absl::StatusOr<std::vector<JsonFile>> files = GetResourceJsonFiles(
-      "external/hl7.fhir.r5.core_5.0.0/file/hl7.fhir.r5.core@5.0.0.tgz");
+      "external/_main~_repo_rules~hl7.fhir.r5.core_5.0.0/file/hl7.fhir.r5.core@5.0.0.tgz");
   FHIR_ASSERT_OK(files.status());
 
   EXPECT_EQ(files->size(), 2968);
@@ -246,7 +246,7 @@ INSTANTIATE_TEST_SUITE_P(
     R5Tests, R5JsonFormatTest,
     testing::ValuesIn(
         GetResourceJsonFiles(
-            "external/hl7.fhir.r5.core_5.0.0/file/hl7.fhir.r5.core@5.0.0.tgz")
+            "external/_main~_repo_rules~hl7.fhir.r5.core_5.0.0/file/hl7.fhir.r5.core@5.0.0.tgz")
             .value()),
     GetTestName<R5JsonFormatTest>);
 }  // namespace

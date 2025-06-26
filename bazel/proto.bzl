@@ -1,7 +1,7 @@
 """Proto related build rules for fhir.
 """
 
-load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+load("@rules_go//proto:def.bzl", "go_proto_library")
 load("@rules_cc//cc:defs.bzl", "cc_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 

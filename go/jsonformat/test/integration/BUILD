@@ -1,4 +1,4 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_test")
+load("@rules_go//go:def.bzl", "go_test")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -27,7 +27,7 @@ go_test(
         "//proto/google/fhir/proto/r4/core/resources:patient_go_proto",
         "//proto/google/fhir/proto/stu3:resources_go_proto",
         "@com_github_google_go_cmp//cmp:go_default_library",
-        "@io_bazel_rules_go//go/tools/bazel:go_default_library",
+        "@rules_go//go/tools/bazel:go_default_library",
         "@org_bitbucket_creachadair_stringset//:go_default_library",
         "@org_golang_google_protobuf//encoding/prototext:go_default_library",
         "@org_golang_google_protobuf//proto:go_default_library",

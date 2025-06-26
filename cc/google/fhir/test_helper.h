@@ -138,7 +138,7 @@ class FhirProtoParseHelper {
 
 inline std::string ReadFile(absl::string_view filename) {
   std::ifstream infile;
-  infile.open(absl::StrCat(::testing::SrcDir(), "/com_google_fhir/",
+  infile.open(absl::StrCat(::testing::SrcDir(), "/_main/",
                            filename));
 
   std::ostringstream out;

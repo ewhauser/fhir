@@ -1,4 +1,4 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@rules_go//go:def.bzl", "go_library")
 
 licenses(["notice"])
 
@@ -19,5 +19,5 @@ go_library(
     visibility = [
         "//go/fhirpath:__subpackages__",
     ],
-    deps = ["@com_github_antrl4_go_antlr//:go_default_library"],
+    deps = ["@com_github_antlr4_go_antlr_v4//:go_default_library"],
 )

@@ -178,7 +178,7 @@ public final class ProtoFilePrinterTest {
             .setLicense(PackageInfo.License.APACHE)
             .setLicenseDate("2019")
             .build();
-    r4Package = FhirPackage.load("external/hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz");
+    r4Package = FhirPackage.load("external/_main~_repo_rules~hl7.fhir.r4.core_4.0.1/file/hl7.fhir.r4.core@4.0.1.tgz");
 
     protoPrinter = new ProtoFilePrinter(packageInfo);
   }

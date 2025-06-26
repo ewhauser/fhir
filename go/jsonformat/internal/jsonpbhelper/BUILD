@@ -1,4 +1,4 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+load("@rules_go//go:def.bzl", "go_library", "go_test")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -19,6 +19,7 @@ go_library(
         "//proto/google/fhir/proto:annotations_go_proto",
         "//proto/google/fhir/proto/r4/core:datatypes_go_proto",
         "//proto/google/fhir/proto/r4/core/resources:bundle_and_contained_resource_go_proto",
+        "//proto/google/fhir/proto/r5/core:datatypes_go_proto",
         "//proto/google/fhir/proto/r5/core/resources:bundle_and_contained_resource_go_proto",
         "//proto/google/fhir/proto/stu3:datatypes_go_proto",
         "//proto/google/fhir/proto/stu3:resources_go_proto",
