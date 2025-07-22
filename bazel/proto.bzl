@@ -4,6 +4,7 @@
 load("@rules_go//proto:def.bzl", "go_proto_library")
 load("@rules_cc//cc:defs.bzl", "cc_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_java//java:defs.bzl", "java_proto_library")
 
 WELL_KNOWN_PROTOS = ["descriptor_proto", "any_proto"]
 GO_WELL_KNOWN_PROTOS = {
@@ -46,7 +47,7 @@ def fhir_proto_library(proto_library_prefix, srcs = [], proto_deps = [], **kwarg
         deps = [proto_library_prefix + "_proto"],
     )
 
-    native.java_proto_library(
+    java_proto_library(
         name = proto_library_prefix + "_java_proto",
         deps = [
             ":" + proto_library_prefix + "_proto",
