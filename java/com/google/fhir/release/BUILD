@@ -1,4 +1,5 @@
 load("@google_bazel_common//tools/jarjar:jarjar.bzl", "jarjar_library")
+load("@rules_java//java:defs.bzl", "java_binary")
 
 package(
     # No Bazel target should depend on these
